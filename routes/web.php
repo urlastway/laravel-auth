@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Back office
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,3 +28,9 @@ Route::middleware('auth')
     ->group(function(){
         Route::get('/home', 'HomeController@index')->name('home');
     });
+
+//Front office
+
+Route::get("{any?}", function(){
+    return view("guests.home");
+})->where("any", ".*");
